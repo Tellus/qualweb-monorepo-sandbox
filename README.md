@@ -92,3 +92,11 @@ To run a command for a specific workspace, you can run `npm` from within the wor
 `npx` should be usable in the same way.
 
 NPM "should" be able to figure out when a package depends on another package in the monorepo, and link them up transparently in node_modules. This also means that they will use their own local code when run in a dev environment - useful for iterating across several packages.
+
+### Thoughts on NPM workspaces
+
+I spent all morning chasing down a build error that essentially came from a misconception of how NPM handles workspaces.
+
+The error only occurred when using npm for installing dependencies, not (as an experiment) pnpm.
+
+It looks like the error occurred because npm tried to run individual workspaces' `prepare` scripts before having installed all dependencies, which would often fail because they would be missing types or build tools like webpack.
