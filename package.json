@@ -25,20 +25,6 @@
   },
   "homepage": "https://github.com/qualweb/qualweb#readme",
   "workspaces": [
-    "packages/act-rules",
-    "packages/best-practices",
-    "packages/cli",
-    "packages/core",
-    "packages/counter",
-    "packages/crawler",
-    "packages/dom",
-    "packages/earl-reporter",
-    "packages/evaluation",
-    "packages/locale",
-    "packages/qw-element",
-    "packages/qw-page",
-    "packages/types",
-    "packages/util",
-    "packages/wcag-techniques"
+    "packages/*"
   ]
 }
