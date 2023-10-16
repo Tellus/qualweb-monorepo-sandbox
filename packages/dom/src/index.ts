@@ -174,10 +174,12 @@ class Dom {
     if (this.endpoint) {
       const validationUrl = this.endpoint + encodeURIComponent(url);
       try {
-        const response = await fetch(validationUrl, { timeout: 10 * 1000 });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const response = await fetch(validationUrl, { timeout: 10 * 1000 } as any);
         if (response && response.status === 200) {
           const data = await response.json();
-          return <HTMLValidationReport>JSON.parse(data);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          return <HTMLValidationReport>JSON.parse(data as any);
         }
       } catch (e) {
         console.error('Error fetching HTML Validation: ' + e);
