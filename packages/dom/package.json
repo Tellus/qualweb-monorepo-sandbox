@@ -13,8 +13,7 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prebuild": "rimraf dist",
-    "build": "npm run format && npm run lint && tsc --build",
-    "prepare": "npm run build"
+    "build": "npm run format && npm run lint && tsc --build"
   },
   "homepage": "https://github.com/qualweb/dom#readme",
   "repository": {

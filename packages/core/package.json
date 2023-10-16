@@ -25,8 +25,7 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "build": "tsc --build",
-    "docs": "typedoc --out docs src/index.ts",
-    "prepare": "npm run build"
+    "docs": "typedoc --out docs src/index.ts"
   },
   "keywords": [
     "qualweb",
@@ -69,9 +68,9 @@
   "license": "ISC",
   "dependencies": {
     "@qualweb/crawler": "0.3.15",
-    "@qualweb/dom": "0.2.6",
+    "@qualweb/dom": "0.2.5",
     "@qualweb/earl-reporter": "0.4.3",
-    "@qualweb/evaluation": "0.3.28",
+    "@qualweb/evaluation": "file://../evaluation",
     "@qualweb/locale": "0.1.12",
     "colors": "1.4.0",
     "puppeteer": "13.5.1",

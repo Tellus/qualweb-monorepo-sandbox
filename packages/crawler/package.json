@@ -14,8 +14,7 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prebuild": "rimraf dist",
-    "build": "npm run prebuild && tsc --build",
-    "prepare": "npm run build"
+    "build": "npm run prebuild && tsc --build"
   },
   "homepage": "https://github.com/qualweb/crawler#readme",
   "repository": {

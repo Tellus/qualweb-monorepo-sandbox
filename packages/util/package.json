@@ -18,8 +18,7 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prebuild": "rimraf prebuild && tsc --build",
     "build": "rimraf dist && npm run prebuild && webpack --mode production && rimraf prebuild",
-    "docs": "typedoc --out docs src/index.ts",
-    "prepare": "npm run build"
+    "docs": "typedoc --out docs src/index.ts"
   },
   "homepage": "https://github.com/qualweb/util#readme",
   "bugs": {
