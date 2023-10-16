@@ -100,3 +100,13 @@ I spent all morning chasing down a build error that essentially came from a misc
 The error only occurred when using npm for installing dependencies, not (as an experiment) pnpm.
 
 It looks like the error occurred because npm tried to run individual workspaces' `prepare` scripts before having installed all dependencies, which would often fail because they would be missing types or build tools like webpack.
+
+#### Workspace dependencies
+
+I found an article on [logrocket.com](https://blog.logrocket.com/advanced-package-manager-features-npm-yarn-pnpm/#npm-workspaces) (their overview articles tend to be really good as starting-off points) that discussed differences between package managers (NPM/Yarn/PNPM) in workspaces. 
+
+*NPM is the only package manager to **NOT** support referencing workspace packages as dependencies.*
+
+This issue comes up, for example, if you're working on a deeper dependency (like @qualweb/act-rules) but want to iterate over its functionality on a higher level (like core). `pnpm`, as an example, supports using workspace protocols to declare that a package should be symbolically linked to the local code when developing, but tied to the most recent version when published.
+
+You can work around the issue by linking directly to the packages you're working with.
