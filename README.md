@@ -79,9 +79,19 @@ Add a `workspaces` field. Its value is an array where each member points to a si
 }
 ```
 
+The field also supports globs, so you could simply do this:
+
+```json
+{
+  "workspaces": [
+    "packages/*"
+  ]
+}
+```
+
 ### Fix up everything else
 
-You now have a *barebones* monorepo for the QualWeb ecosystem. run `npm i` in the root to install dependencies for the entire monorepo. It will likely fail to due conflicting dependency versions and failling post-install scripts.
+You now have a *barebones* monorepo for the QualWeb ecosystem. run `npm i` in the root to install dependencies for the entire monorepo. It will likely fail to due conflicting dependency versions and failling post-install scripts (aside: `pnpm` seemed able to install all dependencies without panicking when prepare scripts failed).
 
 ### Using workspaces
 
@@ -91,7 +101,15 @@ To run a command for a specific workspace, you can run `npm` from within the wor
 
 `npx` should be usable in the same way.
 
-NPM "should" be able to figure out when a package depends on another package in the monorepo, and link them up transparently in node_modules. This also means that they will use their own local code when run in a dev environment - useful for iterating across several packages.
+#### Installing dependencies
+
+It seems that NPM will create links to all packages in the workspace within the `node_modules` folder of the root of the workspace. If one of the packages depend on a specific version of another package that is not in the monorepo (say, a package version 0.2.6 when the only one present is 0.2.5) then NPM will still download the package and place it in a *local* `node_modules` folder for the package in question.
+
+Example:
+
+@qualweb/core depends on version 0.2.6 of @qualweb/dom but the version present in the workspace is version 0.2.5. Since the required version isn't in the workspace, NPM will download version 0.2.6 and place it in the `node_modules` folder of `packages/core` (i.e. the workspace of @qualweb/core) while retaining the symbolic link to @qualweb/core in the root `node_modules` folder (i.e. the path `node_modules/@qualweb/dom` will be a symbolic link to `packages/dom/`).
+
+The same thing happens for packages not part of the ecosystem. Since several packages depend on *different* versions of puppeteer, NPM installs a common (latest?) version in the root `node_modules` folder, but installs appropriate versions of puppeteer in workspace-local `node_modules` folders to make sure requested dependency versions are honoured.
 
 ### Thoughts on NPM workspaces
 
