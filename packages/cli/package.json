@@ -17,7 +17,8 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "build": "npm run prebuild && npm run format && npm run lint && tsc --build",
-    "typedoc": "typedoc --out docs src/index.ts"
+    "typedoc": "typedoc --out docs src/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "qualweb",

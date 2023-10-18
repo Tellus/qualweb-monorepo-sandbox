@@ -14,7 +14,8 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "docs": "typedoc --out docs src/index.ts",
     "prebuild": "rimraf dist",
-    "build": "npm run format && tsc --build"
+    "build": "npm run format && tsc --build",
+    "prepublishOnly": "npm run build"
   },
   "homepage": "https://github.com/qualweb/evaluation#readme",
   "repository": {

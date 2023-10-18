@@ -19,7 +19,8 @@
     "prebuild": "npm run validate:rules && npm run compile:rules && rimraf prebuild && tsc --build",
     "build": "npm run prebuild && rimraf dist && webpack --mode production && rimraf prebuild",
     "release": "npm run build && npx changeset publish",
-    "release-snapshot": "npm run build && npx changeset version --snapshot next && npx changeset publish --tag next"
+    "release-snapshot": "npm run build && npx changeset version --snapshot next && npx changeset publish --tag next",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "a11y",

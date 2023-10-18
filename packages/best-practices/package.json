@@ -37,7 +37,8 @@
     "compile:bps": "node compile-bps.js",
     "prebuild": "rimraf prebuild && npm run compile:bps && rimraf dist",
     "build": "tsc --build && webpack --mode production",
-    "postbuild": "rimraf prebuild"
+    "postbuild": "rimraf prebuild",
+    "prepublishOnly": "npm run build"
   },
   "homepage": "https://github.com/qualweb/best-practices#readme",
   "repository": {
