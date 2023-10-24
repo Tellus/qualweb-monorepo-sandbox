@@ -41,7 +41,7 @@
     "log-update": "4.0.0"
   },
   "devDependencies": {
-    "@qualweb/types": "0.7.15",
+    "@qualweb/types": "0.7.21",
     "@tsconfig/recommended": "^1.0.1",
     "@types/node": "^16.11.2",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
