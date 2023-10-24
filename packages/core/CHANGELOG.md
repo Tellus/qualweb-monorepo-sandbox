@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.44
+
+### Patch Changes
+
+- @qualweb/evaluation@0.3.13
+
 ## [0.7.43] - 27/09/2023
 
 ### Updated

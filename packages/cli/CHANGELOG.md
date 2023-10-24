@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.5
+
+### Patch Changes
+
+- @qualweb/core@0.7.44
+
 ## [0.6.4] - 23/07/2021
 
 ### Updated

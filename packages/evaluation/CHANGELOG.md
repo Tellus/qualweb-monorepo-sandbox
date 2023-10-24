@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.13
+
+### Patch Changes
+
+- Updated dependencies [5da7a91d]
+  - @qualweb/act-rules@0.6.17
+
 ## [0.3.12] - 21/02/2022
 
 ### Fixed
