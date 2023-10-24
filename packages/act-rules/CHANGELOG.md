@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.17
+
+### Patch Changes
+
+- 5da7a91d: Testing version bumps for dependents
+
 ## 0.6.16
 
 ### Patch Changes
