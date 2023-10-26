@@ -1,4 +1,4 @@
-name: Unit Tests (act-rules)
+name: "@qualweb/act-rules"
 on:
   pull_request:
     branches:
@@ -8,17 +8,33 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  unit_tests:
+    name: Unit tests
     runs-on: ubuntu-latest
     steps:
+      # Setup/prelims
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup (cache, dependencies)
         uses: ./.github/actions/install_and_cache_dependencies
 
+      # Build all packages. This ensures that everything this package depends on
+      # has also been built.
       - name: Build
         run: npm -ws run build
 
-      - name: Test
+      # Run unit tests on this package, and its dependents.
+
+      - name: "@qualweb/act-rules"
+        # TODO: consider a more tailored test call here, that only calls affected
+        # act rules if they can be accurately determined. Full suite can take 20
+        # minutes on a beefy system, hours on a basic CI/CD VM. Being able to just
+        # run tests for affected ACT rules could bring that down considerably.
         run: npm -w @qualweb/act-rules test
+      
+      - name: "@qualweb/evaluation"
+        run: npm -w @qualweb/evalaution test
+
+      - name: "@qualweb/core"
+        run: npm -w @qualweb/core test

@@ -1,0 +1,22 @@
+name: Full unit test suite
+on:
+  workflow_call:
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      # Setup/prelims
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup (cache, dependencies)
+        uses: ./.github/actions/install_and_cache_dependencies
+
+      # Build all packages.
+      - name: Build
+        run: npm -ws run build
+
+      # Run unit tests in all workspaces.
+      - name: "@qualweb/act-rules"
+        run: npm -ws @qualweb/act-rules test

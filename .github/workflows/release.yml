@@ -4,6 +4,8 @@
 # merged.
 # If pushing to develop, a snapshot release is published to the @develop tag
 # instead.
+# It's enough to trigger changeset's release process on the monorepo. It'll take
+# care of all changed packages on its own.
 
 name: Release
 on:
@@ -17,10 +19,10 @@ on:
 permissions: write-all
 
 jobs:
-  # Run unit tests by calling the workflow in unit_tests.yml
+  # Run unit tests by calling the workflow in all_unit_tests.yml
   unit_tests:
     name: Unit tests
-    uses: ./.github/workflows/unit_tests.yml
+    uses: ./.github/workflows/all_unit_tests.yml
   
   release:
     name: Release
