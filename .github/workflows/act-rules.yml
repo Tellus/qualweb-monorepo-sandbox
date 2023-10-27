@@ -1,6 +1,9 @@
 name: "@qualweb/act-rules"
 on:
   pull_request:
+    branches:
+      - main
+      - develop
     paths:
       - "packages/act-rules/**"
   workflow_call:
