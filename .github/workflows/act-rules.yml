@@ -33,8 +33,5 @@ jobs:
         # run tests for affected ACT rules could bring that down considerably.
         run: npm -w @qualweb/act-rules test
       
-      - name: "@qualweb/evaluation"
-        run: npm -w @qualweb/evalaution test
-
-      - name: "@qualweb/core"
-        run: npm -w @qualweb/core test
+      - name: "Test dependents"
+        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces --include-self @qualweb/act-rules) test
