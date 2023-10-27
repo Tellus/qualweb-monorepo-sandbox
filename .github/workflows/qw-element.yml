@@ -1,11 +1,11 @@
-name: "@qualweb/dom"
+name: "@qualweb/qw-element"
 on:
   pull_request:
     branches:
       - main
       - develop
     paths:
-      - "packages/dom/**"
+      - "packages/qw-element/**"
 
 jobs:
   unit_tests:
@@ -25,8 +25,7 @@ jobs:
         run: npm -ws run build
 
       - name: "Unit tests for this package"
-        run: npm -w @qualweb/crawler test
+        run: npm -w @qualweb/qw-element test
 
-      # Run unit tests on this package, and its dependents.
-      - name: "Tests"
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/dom) test
+      - name: "Test dependents"
+        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/qw-element) test
