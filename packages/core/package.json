@@ -71,7 +71,7 @@
     "@qualweb/crawler": "0.3.15",
     "@qualweb/dom": "0.2.5",
     "@qualweb/earl-reporter": "0.4.3",
-    "@qualweb/evaluation": "file://../evaluation",
+    "@qualweb/evaluation": "^0.3.12",
     "@qualweb/locale": "0.1.12",
     "colors": "1.4.0",
     "puppeteer": "13.5.1",
