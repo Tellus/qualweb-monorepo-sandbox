@@ -25,7 +25,8 @@ async function cli(): Promise<void> {
     await qualweb.stop();
 
     await handleReporting(reports, options);
-  } catch (err) {
+  } catch (_err: unknown) {
+    const err = _err as Error;
     if (err?.message === 'Invalid input method') {
       printHelp();
     } else {
