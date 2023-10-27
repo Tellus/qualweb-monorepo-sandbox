@@ -12,6 +12,9 @@ import mapping from './lib/mapping';
 import compositeRules from './lib/mappingComposite';
 import { Translate } from '@qualweb/locale';
 
+/**
+ * Assume I wrote some good documentation here.
+ */
 class ACTRules {
   private readonly rules: { [rule: string]: AtomicRule | CompositeRule };
   private readonly rulesToExecute: { [rule: string]: boolean };
