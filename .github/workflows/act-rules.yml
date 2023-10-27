@@ -4,7 +4,7 @@ on:
     branches:
       - develop
     paths:
-      - packages/act-rules
+      - "packages/act-rules/**"
   workflow_call:
 
 jobs:
