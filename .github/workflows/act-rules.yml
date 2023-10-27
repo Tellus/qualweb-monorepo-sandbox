@@ -6,7 +6,6 @@ on:
       - develop
     paths:
       - "packages/act-rules/**"
-  workflow_call:
 
 jobs:
   unit_tests:
@@ -27,7 +26,7 @@ jobs:
 
       # Run unit tests on this package, and its dependents.
 
-      - name: "@qualweb/act-rules"
+      - name: "Unit tests for this package"
         # TODO: consider a more tailored test call here, that only calls affected
         # act rules if they can be accurately determined. Full suite can take 20
         # minutes on a beefy system, hours on a basic CI/CD VM. Being able to just
@@ -35,4 +34,4 @@ jobs:
         run: npm -w @qualweb/act-rules test
       
       - name: "Test dependents"
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces --include-self @qualweb/act-rules) test
+        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/act-rules) test

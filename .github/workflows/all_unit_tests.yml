@@ -18,5 +18,5 @@ jobs:
         run: npm -ws run build
 
       # Run unit tests in all workspaces.
-      - name: "@qualweb/act-rules"
-        run: npm -ws @qualweb/act-rules test
+      - name: "All unit tests"
+        run: npm -ws test
