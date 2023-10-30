@@ -34,5 +34,16 @@ jobs:
 
       - name: "@qualweb/act-rules"
         if: contains(steps.changed-files.outputs.modified_files, 'packages/act-rules')
-        run: |
-          echo "ACT rules seem to be in the list of changed files."
+        run: npm -w @qualweb/act-rules test
+
+      - name: "@qualweb/best-practices"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/best-practices')
+        run: npm -w @qualweb/best-practices test
+
+      - name: "@qualweb/cli"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/cli')
+        run: npm -w @qualweb/cli test
+
+      - name: "@qualweb/core"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/core')
+        run: npm -w @qualweb/core test
