@@ -47,3 +47,43 @@ jobs:
       - name: "@qualweb/core"
         if: contains(steps.changed-files.outputs.modified_files, 'packages/core')
         run: npm -w @qualweb/core test
+
+      - name: "@qualweb/counter"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/counter')
+        run: npm -w @qualweb/counter test
+
+      - name: "@qualweb/crawler"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/crawler')
+        run: npm -w @qualweb/crawler test
+
+      - name: "@qualweb/dom"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/dom')
+        run: npm -w @qualweb/dom test
+
+      - name: "@qualweb/earl-reporter"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/earl-reporter')
+        run: npm -w @qualweb/earl-reporter test
+
+      - name: "@qualweb/evaluation"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/evaluation')
+        run: npm -w @qualweb/evaluation test
+
+      - name: "@qualweb/locale"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/locale')
+        run: npm -w @qualweb/locale test
+
+      - name: "@qualweb/qw-element"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/qw-element')
+        run: npm -w @qualweb/qw-element test
+
+      - name: "@qualweb/qw-page"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/qw-page')
+        run: npm -w @qualweb/qw-page test
+
+      - name: "@qualweb/util"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/util')
+        run: npm -w @qualweb/util test
+
+      - name: "@qualweb/wcag-techniques"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/wcag-techniques')
+        run: npm -w @qualweb/wcag-techniques test
