@@ -23,14 +23,14 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v40
 
+      - name: Output changed files
+        run: echo ${{ steps.changed-files.outputs.modified_files }}
+
       # Build all packages. Do this AFTER the changed files check. After we
       # build everything, a lot of things may look changed to the changed-files
       # action.
       - name: Build
         run: npm -ws run build
-
-      - name: Output changed files
-        run: echo ${{ steps.changed-files.outputs.modified_files }}
 
       - name: "@qualweb/act-rules"
         if: contains(steps.changed-files.outputs.modified_files, 'packages/act-rules')
