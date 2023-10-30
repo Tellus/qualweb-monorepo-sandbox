@@ -1,0 +1,34 @@
+# This workflow file contains a workflow that will ONLY run unit tests for
+# packages which have seen changes.
+name: Unit tests
+on:
+  workflow_call:
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      # Setup/prelims
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup (cache, dependencies)
+        uses: ./.github/actions/install_and_cache_dependencies
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+
+      # Build all packages. Do this AFTER the changed files check. After we
+      # build everything, a lot of things may look changed to the changed-files
+      # action.
+      - name: Build
+        run: npm -ws run build
+
+      - name: Output changed files
+        run: echo ${{ steps.changed-files.outputs.modified_files }}
+
+      - name: "@qualweb/act-rules"
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/act-rules')
+        run: |
+          echo "ACT rules seem to be in the list of changed files."
