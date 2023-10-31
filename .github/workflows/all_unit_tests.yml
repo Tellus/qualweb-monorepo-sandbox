@@ -1,9 +1,10 @@
-name: Full unit test suite
+name: All Unit Tests
 on:
   workflow_call:
 
 jobs:
   unit_tests:
+    name: All Unit Tests
     runs-on: ubuntu-latest
     steps:
       # Setup/prelims
