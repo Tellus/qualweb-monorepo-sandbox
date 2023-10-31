@@ -11,9 +11,8 @@ name: Release
 on:
   push:
     branches:
+      - main
       - develop
-    paths:
-      - packages/*
 
 permissions: write-all
 
@@ -35,12 +34,12 @@ jobs:
         uses: ./.github/actions/install_and_cache_dependencies
 
       - name: Build
-        run: npm run build
+        run: npm -ws run build
 
       # For stable branch, use changeset action to maintain a PR and finally
       # publish when appropriate.
       - name: Create release (or Pull Request)
-        if: github.ref_name == 'master'
+        if: github.ref_name == 'main'
         uses: changesets/action@v1
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -56,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
-          npm run build
+          npm -ws run build
           npx changeset version --snapshot develop
           npx changeset tag
           git push --follow-tags

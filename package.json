@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git://github.com/qualweb/qualweb.git"
   },
+  "scripts": {
+    "release": "npm -ws run build && npx changeset publish"
+  },
   "keywords": [
     "qualweb",
     "accessibility",
