@@ -39,7 +39,7 @@ jobs:
       # For stable branch, use changeset action to maintain a PR and finally
       # publish when appropriate.
       - name: Create release (or Pull Request)
-        if: github.ref_name == 'master'
+        if: github.ref_name == 'main'
         uses: changesets/action@v1
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
