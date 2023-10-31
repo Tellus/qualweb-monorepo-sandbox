@@ -34,7 +34,7 @@ jobs:
         uses: ./.github/actions/install_and_cache_dependencies
 
       - name: Build
-        run: npm run build
+        run: npm -ws run build
 
       # For stable branch, use changeset action to maintain a PR and finally
       # publish when appropriate.
