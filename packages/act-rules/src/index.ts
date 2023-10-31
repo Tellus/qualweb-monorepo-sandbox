@@ -13,7 +13,7 @@ import compositeRules from './lib/mappingComposite';
 import { Translate } from '@qualweb/locale';
 
 /**
- * Imagine some magnificent documentation here.
+ * this is a *differently* useless comment on the class.
  */
 class ACTRules {
   private readonly rules: { [rule: string]: AtomicRule | CompositeRule };
