@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.14
+
+### Patch Changes
+
+- adffac6d: Testing workflows, checking outputs
+- 34d9ce15: Testing dep bumping
+- Updated dependencies [fabf123a]
+- Updated dependencies [a5bd1ab3]
+  - @qualweb/act-rules@0.7.0
+
 ## 0.3.13
 
 ### Patch Changes
