@@ -11,6 +11,9 @@ import { HTMLValidationReport } from '@qualweb/html-validator';
 import { QWElement } from '@qualweb/qw-element';
 import { Translate } from '@qualweb/locale';
 
+/**
+ * Imagine some deeply insightful commentary here.
+ */
 class Evaluation {
   private readonly url: string;
   private readonly page: Page;
