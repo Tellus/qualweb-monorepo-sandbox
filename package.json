@@ -8,7 +8,7 @@
     "url": "git://github.com/qualweb/qualweb.git"
   },
   "scripts": {
-    "release": "npm -ws run build && npx changeset publish"
+    "release": "npm -ws run build && npx changeset tag && git push --follow-tags"
   },
   "keywords": [
     "qualweb",
