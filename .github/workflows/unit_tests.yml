@@ -1,5 +1,7 @@
 # This workflow file contains a workflow that will ONLY run unit tests for
-# packages which have seen changes.
+# packages which have seen changes. tj-actions/changed-files *should* correctly
+# list the files that have changed in Git commits that are new to the base
+# branch.
 name: Unit tests
 on:
   pull_request:
@@ -20,11 +22,16 @@ jobs:
       - name: Setup (cache, dependencies)
         uses: ./.github/actions/install_and_cache_dependencies
 
+      # Retrieve files that have changed in this branch compared to the base
+      # branch (the base branch should be "main" when pulling from "develop" and
+      # "develop" when pulling from feature branches)
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v40
 
-      - name: Output changed files
+      # For debug purposes only. List the files that the previous action
+      # identified as having changed.
+      - name: List changed files
         run: echo ${{ steps.changed-files.outputs.modified_files }}
 
       # Build all packages. Do this AFTER the changed files check. After we
@@ -32,6 +39,20 @@ jobs:
       # action.
       - name: Build
         run: npm -ws run build
+
+      # Seperate unit test steps for each package. They are all written in the
+      # same way. The name is simply the package's name, while the conditional
+      # causes the unit tests for the package to run if any changed file is in
+      # a path that contains the string "packages/<package-name>". Finally, the
+      # unit tests are run by invoking npm and using command substitution to
+      # name the packages that should be tested. The script get_dependents.ts
+      # outputs the package's name itself as well as any other workspaces that
+      # depend on it.
+      # TODO: this setup will actually run a package's unit tests several times
+      # if they are encountered in different combinations. For example,
+      # @qualweb/core will be run twice if both @qualweb/act-rules and
+      # @qualweb/evaluation and THREE times if @qualweb/core was also directly
+      # modified.
 
       - name: "@qualweb/act-rules"
         if: contains(steps.changed-files.outputs.modified_files, 'packages/act-rules')
