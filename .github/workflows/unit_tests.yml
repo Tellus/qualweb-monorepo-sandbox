@@ -47,6 +47,10 @@ jobs:
 
       # Consolidated unit testing job. This will run unit tests for all modified
       # packages and their dependents. No duplicates.
+      # TODO: consider a third iteration, with separate unit test jobs (so they
+      # are separately visible in Github UI), but testing for presence in a
+      # distilled version of modified_files.txt that lists packages that have
+      # been modified.
       - name: Unit tests
         if: contains(steps.changed-files.outputs.modified_files, 'packages/')
         run: echo Unit tests should run for the following workspaces, $(npx ts-node scripts/get_modified_workspaces.ts --as-workspaces .github/outputs/modified_files.txt)
