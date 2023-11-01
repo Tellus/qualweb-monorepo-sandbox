@@ -36,11 +36,8 @@ jobs:
       - name: List changed files
         run: echo ${{ steps.changed-files.outputs.modified_files }}
 
-      - name: List job output (debug)
-        run: ls -la .github/outputs
-
       - name: List changed files (from output file)
-        run: cat .github/outputs/*
+        run: cat .github/outputs/modified_files.txt
 
       # Build all packages. Do this AFTER the changed files check. After we
       # build everything, a lot of things may look changed to the changed-files
