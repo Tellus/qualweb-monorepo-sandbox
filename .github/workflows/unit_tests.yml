@@ -40,7 +40,7 @@ jobs:
         run: cat .github/outputs/modified_files.txt
 
       - name: Get affected workspaces
-        run: echo "AFFECTED_WORKSPACES=$(npx ts-node scripts/get_modified_workspaces.ts --as-workspaces .github/outputs/modified_files.txt)" >> $GITHUB_ENV
+        run: echo AFFECTED_WORKSPACES="$(npx ts-node scripts/get_modified_workspaces.ts --as-workspaces .github/outputs/modified_files.txt)" >> "$GITHUB_ENV"
 
       - name: List affected workspaces
         run: echo $AFFECTED_WORKSPACES
