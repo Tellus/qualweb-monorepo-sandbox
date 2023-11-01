@@ -45,72 +45,8 @@ jobs:
       - name: Build
         run: npm -ws run build
 
-      # Seperate unit test steps for each package. They are all written in the
-      # same way. The name is simply the package's name, while the conditional
-      # causes the unit tests for the package to run if any changed file is in
-      # a path that contains the string "packages/<package-name>". Finally, the
-      # unit tests are run by invoking npm and using command substitution to
-      # name the packages that should be tested. The script get_dependents.ts
-      # outputs the package's name itself as well as any other workspaces that
-      # depend on it.
-      # TODO: this setup will actually run a package's unit tests several times
-      # if they are encountered in different combinations. For example,
-      # @qualweb/core will be run twice if both @qualweb/act-rules and
-      # @qualweb/evaluation and THREE times if @qualweb/core was also directly
-      # modified.
-
-      - name: "@qualweb/act-rules"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/act-rules')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/act-rules) test
-
-      - name: "@qualweb/best-practices"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/best-practices')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/best-practices) test
-
-      - name: "@qualweb/cli"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/cli')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/cli) test
-
-      - name: "@qualweb/core"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/core')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/core) test
-
-      - name: "@qualweb/counter"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/counter')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/counter) test
-
-      - name: "@qualweb/crawler"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/crawler')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/crawler) test
-
-      - name: "@qualweb/dom"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/dom')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/dom) test
-
-      - name: "@qualweb/earl-reporter"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/earl-reporter')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/earl-reporter) test
-
-      - name: "@qualweb/evaluation"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/evaluation')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/evaluation) test
-
-      - name: "@qualweb/locale"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/locale')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/locale) test
-
-      - name: "@qualweb/qw-element"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/qw-element')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/qw-element) test
-
-      - name: "@qualweb/qw-page"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/qw-page')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/qw-page) test
-
-      - name: "@qualweb/util"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/util')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/util) test
-
-      - name: "@qualweb/wcag-techniques"
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/wcag-techniques')
-        run: npm run $(npx ts-node scripts/get_dependents.ts --as-workspaces @qualweb/wcag-techniques) test
+      # Consolidated unit testing job. This will run unit tests for all modified
+      # packages and their dependents. No duplicates.
+      - name: Unit tests
+        if: contains(steps.changed-files.outputs.modified_files, 'packages/')
+        run: npm run $(npx ts-node scripts/get_modified_workspaces.ts --as-workspaces .github/outputs/modified_files.txt) test
