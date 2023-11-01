@@ -28,11 +28,19 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v40
+        with:
+          write_output_files: true
 
       # For debug purposes only. List the files that the previous action
       # identified as having changed.
       - name: List changed files
         run: echo ${{ steps.changed-files.outputs.modified_files }}
+
+      - name: List job output (debug)
+        run: ls -la .github/outputs
+
+      - name: List changed files (from output file)
+        run: cat .github/outputs/*
 
       # Build all packages. Do this AFTER the changed files check. After we
       # build everything, a lot of things may look changed to the changed-files
