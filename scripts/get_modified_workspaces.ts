@@ -56,8 +56,6 @@ async function main(): Promise<void> {
 
   const opts = command.opts();
 
-  console.debug(opts);
-
   const affectedWorkspaces = await get_workspaces_in_file(command.args[0], opts.inputSeparator);
 
   const uniqueWorkspaces = new Set();
