@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.0
+
+### Minor Changes
+
+- fabf123a: Testing out final workflows
+
+### Patch Changes
+
+- a5bd1ab3: Another changeset test
+
 ## 0.6.17
 
 ### Patch Changes

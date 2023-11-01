@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.45
+
+### Patch Changes
+
+- Updated dependencies [adffac6d]
+- Updated dependencies [34d9ce15]
+  - @qualweb/evaluation@0.3.14
+
 ## 0.7.44
 
 ### Patch Changes
