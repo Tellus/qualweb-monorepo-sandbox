@@ -48,8 +48,8 @@ jobs:
       # Build all packages. Do this AFTER the changed files check. After we
       # build everything, a lot of things may look changed to the changed-files
       # action.
-      # - name: Build
-      #   run: npm -ws run build
+      - name: Build
+        run: npm $(npx ts-node scripts/get_modified_workspaces.ts --as-workspaces .github/outputs/modified_files.txt) run build
 
       - name: "@qualweb/act-rules"
         if: contains(env.AFFECTED_WORKSPACES, '@qualweb/act-rules')
