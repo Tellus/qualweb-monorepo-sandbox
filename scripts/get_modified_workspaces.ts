@@ -27,7 +27,8 @@ type NpmQueryResult = {
 
 const command = new Command('get-modified-workspaces')
   .option('--as-workspaces', 'Outputs the results as a list of workspace parameters fit for consumption by npm and npx.')
-  .option('--separator', 'Separator between filenames in the input file.', ' ')
+  .option('--input-separator <separator>', 'Separator between filenames in the input file.', ' ')
+  .option('--output-separator <outputSeparator>', 'Separator between workspace entries. This is ignored when using --as-workspaces', ' ')
   .argument('<path-to-modified_files.txt>', 'Input file. Each entry should be separated by the value of --separator (defaults to a whitespace)')
   ;
 
@@ -53,7 +54,11 @@ export async function get_workspaces_in_file(path: string, separator: string = '
 async function main(): Promise<void> {
   command.parse(process.argv);
 
-  const affectedWorkspaces = await get_workspaces_in_file(command.args[0], command.opts().separator);
+  const opts = command.opts();
+
+  console.debug(opts);
+
+  const affectedWorkspaces = await get_workspaces_in_file(command.args[0], opts.inputSeparator);
 
   const uniqueWorkspaces = new Set();
 
@@ -68,7 +73,7 @@ async function main(): Promise<void> {
   if (command.opts().asWorkspaces === true)
     console.debug(finalResult.map(dep => `-w ${dep}`).join(' '))
   else
-    console.debug(finalResult);
+    console.debug(finalResult.join(opts.outputSeparator));
 }
 
 // Run as CLI if executed directly.
