@@ -51,12 +51,58 @@ jobs:
       # - name: Build
       #   run: npm -ws run build
 
-      # Consolidated unit testing job. This will run unit tests for all modified
-      # packages and their dependents. No duplicates.
-      # TODO: consider a third iteration, with separate unit test jobs (so they
-      # are separately visible in Github UI), but testing for presence in a
-      # distilled version of modified_files.txt that lists packages that have
-      # been modified.
-      - name: Unit tests
-        if: contains(steps.changed-files.outputs.modified_files, 'packages/')
-        run: echo Unit tests should run for the following workspaces, $(npx ts-node scripts/get_modified_workspaces.ts --as-workspaces .github/outputs/modified_files.txt)
+      - name: "@qualweb/act-rules"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/act-rules')
+        run: npm run -w @qualweb/act-rules test
+
+      - name: "@qualweb/best-practices"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/best-practices')
+        run: npm run -w @qualweb/best-practices test
+
+      - name: "@qualweb/cli"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/cli')
+        run: npm run -w @qualweb/cli test
+
+      - name: "@qualweb/core"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/core')
+        run: npm run -w @qualweb/core test
+
+      - name: "@qualweb/counter"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/counter')
+        run: npm run -w @qualweb/counter test
+
+      - name: "@qualweb/crawler"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/crawler')
+        run: npm run -w @qualweb/crawler test
+
+      - name: "@qualweb/dom"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/dom')
+        run: npm run -w @qualweb/dom test
+
+      - name: "@qualweb/earl-reporter"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/earl-reporter')
+        run: npm run -w @qualweb/earl-reporter test
+
+      - name: "@qualweb/evaluation"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/evaluation')
+        run: npm run -w @qualweb/evaluation test
+
+      - name: "@qualweb/locale"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/locale')
+        run: npm run -w @qualweb/locale test
+
+      - name: "@qualweb/qw-element"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/qw-element')
+        run: npm run -w @qualweb/qw-element test
+
+      - name: "@qualweb/qw-page"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/qw-page')
+        run: npm run -w @qualweb/qw-page test
+
+      - name: "@qualweb/util"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/util')
+        run: npm run -w @qualweb/util test
+
+      - name: "@qualweb/wcag-techniques"
+        if: contains(env.AFFECTED_WORKSPACES, 'packages/wcag-techniques')
+        run: npm run -w @qualweb/wcag-techniques test
