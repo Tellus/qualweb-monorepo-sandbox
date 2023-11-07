@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1
+
+### Patch Changes
+
+- 2f88d3d: Changeset test
+
 ## 0.7.0
 
 ### Minor Changes
