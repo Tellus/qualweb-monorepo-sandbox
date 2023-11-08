@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.15
+
+### Patch Changes
+
+- ee63f8b: Testing workflows, checking outputs
+- Updated dependencies [2f88d3d]
+  - @qualweb/act-rules@0.7.1
+
 ## 0.3.14
 
 ### Patch Changes
